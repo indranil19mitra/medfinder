@@ -1,0 +1,1 @@
+<h1>Welcome to the HMVC login page</h1>
