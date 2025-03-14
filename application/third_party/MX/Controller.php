@@ -13,10 +13,10 @@ require dirname(__FILE__) . '/Base.php';
  * This library replaces the CodeIgniter Controller class
  * and adds features allowing use of modules and the HMVC design pattern.
  *
- * Install this file as application/libraries/MX/Controller.php
+ * Install this file as application/third_party/MX/Controller.php
  *
- * @copyright	Copyright (c) 2011 Wiredesignz
- * @version 	5.4
+ * @copyright	Copyright (c) 2015 Wiredesignz
+ * @version 	5.5
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,55 +36,30 @@ require dirname(__FILE__) . '/Base.php';
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  **/
-// class MX_Controller 
-// {
-// 	public $autoload = array();
 
-// 	public function __construct() 
-// 	{
-// 		$class = str_replace(CI::$APP->config->item('controller_suffix'), '', get_class($this));
-// 		log_message('debug', $class." MX_Controller Initialized");
-// 		Modules::$registry[strtolower($class)] = $this;	
-
-// 		/* copy a loader instance and initialize */
-// 		$this->load = clone load_class('Loader');
-// 		$this->load->initialize($this);	
-
-// 		/* autoload module items */
-// 		$this->load->_autoloader($this->autoload);
-// 	}
-
-// 	public function __get($class) {
-// 		return CI::$APP->$class;
-// 	}
-// }
 class MX_Controller
 {
 	public $autoload = array();
-	public $load;  // Declare the $load property explicitly to avoid dynamic property creation
+	public $load; // Explicitly declare $load to prevent dynamic property creation
 
 	public function __construct()
 	{
-		// Hardcode a default value for testing if 'controller_suffix' is not loaded
-		$controller_suffix = CI::$APP->config->item('controller_suffix');
-
-		// Log the value for debugging
-		log_message('debug', 'Controller Suffix: ' . var_export($controller_suffix, true));
-
-		// Default to empty string if null
-		if ($controller_suffix === null) {
-			$controller_suffix = '';
-		}
-
+		$controller_suffix = CI::$APP->config->item('controller_suffix') ?? '';
 		$class = str_replace($controller_suffix, '', get_class($this));
+
 		log_message('debug', $class . " MX_Controller Initialized");
 		Modules::$registry[strtolower($class)] = $this;
 
-		// Initialize load
+		/* copy a loader instance and initialize */
 		$this->load = clone load_class('Loader');
 		$this->load->initialize($this);
 
-		// Autoload module items
+		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
+	}
+
+	public function __get($class)
+	{
+		return CI::$APP->$class;
 	}
 }
