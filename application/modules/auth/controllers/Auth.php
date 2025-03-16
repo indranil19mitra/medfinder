@@ -13,8 +13,11 @@ class Auth extends MX_Controller
 
     public function index()
     {
-        // $this->load->view('login');
-        echo "abcd";
+        $data['title'] = 'Login';
+        $this->load->view('include/header', $data);
+        $this->load->view('login');
+        $this->load->view('include/footer');
+        // echo "abcd";
     }
 
     public function logout()
