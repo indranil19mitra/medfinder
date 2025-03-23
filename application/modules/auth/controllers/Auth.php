@@ -25,4 +25,12 @@ class Auth extends MX_Controller
         $this->session->sess_destroy(); // This will now work
         redirect('auth');
     }
+
+    public function authLogin()
+    {
+        echo "<pre>";
+        print_r($_POST);
+        
+        exit;
+    }
 }
