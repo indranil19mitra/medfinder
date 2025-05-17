@@ -69,6 +69,22 @@
                 <li>
                     <a class="nav-link d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse"
+                        href="#blockSubmenu"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="blockSubmenu">
+                        Block
+                        <span class="ms-auto">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse list-unstyled ps-3" id="blockSubmenu">
+                        <li><a href="<?= base_url('block'); ?>" class="nav-link">Add</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse"
                         href="#medicineSubmenu"
                         role="button"
                         aria-expanded="false"
