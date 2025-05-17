@@ -41,7 +41,7 @@ class Auth extends MX_Controller
         $join2 = ["table" => "users_roles", "condition" => "users_roles.id=users.roles"];
         $join = [$join1, $join2];
 
-        $userData = getData("users_auth.id as users_auth_id,users_auth.users_id as users_id,users_auth.users_pass,users.name,users.phone,users_roles.name_slag as url_name_slag,users.email", "users_auth", $cond, "", $join, "2");
+        $userData = getData("users_auth.id as users_auth_id,users_auth.users_id as users_id,users_auth.users_pass,users.name,users.phone,users.shop as shop_id,users_roles.name_slag as url_name_slag,users.email", "users_auth", $cond, "", $join, "2");
 
         if ($userData) {
             $hashedPassword = $userData->users_pass; // Get stored hash from DB
@@ -58,6 +58,7 @@ class Auth extends MX_Controller
                     'name'      => $userData->name,
                     'phone'      => $userData->phone,
                     'url_name_slag'      => $userData->url_name_slag,
+                    'shop_id'      => $userData->shop_id,
                     'logged_in' => true
                 ];
 
